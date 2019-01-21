@@ -1,0 +1,31 @@
+nav {
+    background: darkblue;
+    text-align: center;
+}
+
+a {
+    color: white;
+}
+
+li {
+    color: red;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+section {
+    padding-left: 35px;
+}
+
+footer {
+    background: darkblue;
+    color: white;
+    text-align: center;
+}
+
+section article header p {
+    font-style: italic;
+}
