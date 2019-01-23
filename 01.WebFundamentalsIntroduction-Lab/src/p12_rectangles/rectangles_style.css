@@ -1,0 +1,19 @@
+div {
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+div#outer {
+    border: blue dotted 2px;
+}
+
+div#middle {
+    border: red dashed 2px;
+}
+
+div#inner {
+    border: green solid 2px;
+    text-align: center;
+    font-size: 24px;
+}

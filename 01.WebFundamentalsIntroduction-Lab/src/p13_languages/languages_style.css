@@ -1,0 +1,11 @@
+span.lang {
+    background: #CCC;
+    padding: 3px;
+    border: #AAA solid 1px;
+    border-radius: 5px;
+}
+
+body {
+    background: #EEE;
+    font-size: 24px;
+}
