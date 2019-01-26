@@ -1,4 +1,4 @@
-package app;
+package p01_parsing_http_requests;
 
 import java.io.BufferedReader;
 import java.io.IOException;

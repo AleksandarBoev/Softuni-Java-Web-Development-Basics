@@ -1,4 +1,4 @@
-package app;
+package p01_parsing_http_requests;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class Main {
     }
 
     static String decode64Bit(String encoded) {
-        byte[] decoded = Base64.getDecoder().decode("UGVzaG8=");
+        byte[] decoded = Base64.getDecoder().decode(encoded);
         return new String(decoded);
     }
 
