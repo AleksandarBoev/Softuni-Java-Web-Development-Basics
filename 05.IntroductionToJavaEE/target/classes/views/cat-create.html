@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Cat</title>
+</head>
+<body>
+<h1>Create a Cat!</h1>
+<!--For info on the form, label, input attributes look at w3schools tags section for html-->
+<form action="/cats/create" method="post"> <!--action = Specifies where to send the form-data when a form is submitted-->
+    <label for="nameInput">
+        <!--name = the name attribute is used for posting to e.g. a webserver-->
+        <!--id = The id is primarily used for css (and javascript).-->
+        <!--to retrieve the info later in a doPost method: request.getParameter("catName")-->
+        Name: <input type="text" id="nameInput" name="catName">
+    </label>
+    <br/>
+    <label for="breedInput">
+        Breed: <input type="text" id="breedInput" name="catBreed">
+    </label>
+    <br/>
+    <label for="colorInput">
+        Color: <input type="text" id="colorInput" name="catColor">
+    </label>
+    <br/>
+    <label>
+        Age: <input type="number" id="ageInput" name="catAge">
+    </label>
+    <br/>
+    <input type="submit" value="Create Cat"> <!--Maybe should be button!-->
+</form>
+</body>
+</html>
