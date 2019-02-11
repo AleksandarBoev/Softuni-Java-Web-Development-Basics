@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+
+<h1>Welcome to Aleksandars simple site!</h1>
+
+<hr/>
+
+<form action="/" method="post">
+    <label for="studentName">
+        Enter name <input type="text" id="studentName" name="name">
+    </label>
+
+    <label for="studentTown">
+        Enter city <input type="text" id="studentTown" name="town">
+    </label>
+
+    <input type="submit" value="Enter">
+
+</form>
+
+<ul>
+    {{students}}
+</ul>
+</body>
+</html>
