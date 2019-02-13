@@ -36,4 +36,12 @@ public class ProductRepositoryImpl implements ProductRepository {
                 .setParameter("id", id)
                 .getSingleResult();
     }
+
+    @Override
+    public Product getProductByName(String name) {
+        return this.entityManager
+                .createQuery("SELECT p FROM Product p WHERE p.name = :name", Product.class)
+                .setParameter("name", name)
+                .getSingleResult();
+    }
 }

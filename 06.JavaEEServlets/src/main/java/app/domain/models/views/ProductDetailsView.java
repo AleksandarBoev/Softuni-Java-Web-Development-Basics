@@ -1,6 +1,6 @@
-package app.domain.models.services;
+package app.domain.models.views;
 
-public class ProductServiceModel {
+public class ProductDetailsView {
     private String name;
     private String description;
     private String type;

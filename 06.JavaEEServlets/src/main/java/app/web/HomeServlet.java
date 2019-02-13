@@ -1,7 +1,7 @@
 package app.web;
 
-import app.domain.entities.Product;
 import app.domain.models.services.ProductServiceModel;
+import app.domain.models.views.ProductAllViewModel;
 import app.services.ProductService;
 import app.utils.MyFileReader;
 
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @WebServlet("/")
@@ -26,15 +27,17 @@ public class HomeServlet extends HttpServlet {
         this.productService = productService;
     }
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Product> allProducts = this.productService.getProducts();
+        List<ProductAllViewModel> allProducts = this.productService.getProductsAllViewModels()
+                .stream()
+                .sorted((p1, p2) -> p1.getName().compareTo(p2.getName()))
+                .collect(Collectors.toList());
 
         StringBuilder sb = new StringBuilder();
 
-        for (Product product : allProducts) {
-            sb.append(this.envelopeInLi(product.toString())).append(System.lineSeparator()); //TODO change with ModelView!
+        for (ProductAllViewModel product : allProducts) {
+            sb.append(this.createLiHyperlink(product.getName())).append(System.lineSeparator());
         }
 
         String htmlContent = this.myFileReader.readFileContentFromFullPath
@@ -55,7 +58,7 @@ public class HomeServlet extends HttpServlet {
         resp.sendRedirect("/");
     }
 
-    private String envelopeInLi(String someString) {
-        return "<li>" + someString + "</li>";
+    private String createLiHyperlink(String someString) {
+        return String.format("<li><a href=\"/details?name=%1$s\">%1$s</a></li>", someString);
     }
 }

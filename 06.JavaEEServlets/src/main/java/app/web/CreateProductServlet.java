@@ -1,6 +1,7 @@
 package app.web;
 
 import app.domain.enums.ProductType;
+import app.domain.models.services.ProductServiceModel;
 import app.services.ProductService;
 import app.utils.MyFileReader;
 
@@ -60,5 +61,13 @@ public class CreateProductServlet extends HttpServlet {
         String productName = req.getParameter("name");
         String productDescription = req.getParameter("description");
         String type = req.getParameter("type");
+
+        ProductServiceModel productToBeSaved = new ProductServiceModel();
+        productToBeSaved.setName(productName);
+        productToBeSaved.setDescription(productDescription);
+        productToBeSaved.setType(type);
+
+        this.productService.save(productToBeSaved);
+        resp.sendRedirect("/");
     }
 }
