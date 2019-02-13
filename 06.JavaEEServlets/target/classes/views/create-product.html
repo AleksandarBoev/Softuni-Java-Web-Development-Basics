@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>Create Product</title>
     <link rel="stylesheet" href="../styles/style.css">
     <style>
         main {
@@ -60,14 +60,31 @@
 <body>
 
 <main>
-    <h1>Welcome to Chushka Application!</h1>
+    <h1>Create product</h1>
     <hr/>
-    <p>Check out our products below!</p>
-    <ul>
-        {{products}}
-    </ul>
-    <br/>
-    <button type="button" onclick="location.href='/create/product'">Create Product</button>
+    <form action="/create/product" method="post">
+        <label for="productName">
+            Name:<br/>
+            <input id="productName" type="text" name="name">
+        </label>
+
+        <label for="productDescription">
+            Description:<br/>
+            <textarea rows="5" id="productDescription" name="description"></textarea>
+        </label>
+
+        <label>
+            Type:<br/>
+            <select name="type">
+                {{options}}
+                <!--An option should look like this - <option value="Health">Health</option>-->
+            </select>
+        </label>
+
+        <input type="submit" value="Create Product">
+    </form>
+    <hr/>
+    <a href="/">Back to Home page.</a>
 </main>
 
 </body>

@@ -1,4 +1,4 @@
-package app.domain.utils;
+package app.utils;
 
 import java.io.IOException;
 

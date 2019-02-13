@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>Details</title>
     <link rel="stylesheet" href="../styles/style.css">
     <style>
         main {
@@ -60,14 +60,13 @@
 <body>
 
 <main>
-    <h1>Welcome to Chushka Application!</h1>
+    <h1>{{name}}</h1>
     <hr/>
-    <p>Check out our products below!</p>
-    <ul>
-        {{products}}
-    </ul>
+    <p>{{description}}</p>
     <br/>
-    <button type="button" onclick="location.href='/create/product'">Create Product</button>
+    <p>{{type}}</p>
+    <hr/>
+    <a href="/">Back to Home page.</a>
 </main>
 
 </body>
