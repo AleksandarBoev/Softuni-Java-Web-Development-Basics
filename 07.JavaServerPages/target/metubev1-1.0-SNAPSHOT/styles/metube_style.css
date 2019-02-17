@@ -1,0 +1,45 @@
+li {
+    text-align: center;
+    font-size: 20pt;
+    margin: 5px 0px 5px 0px;
+}
+
+main {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 14pt;
+    text-align: center;
+    background-color: #eaecea;
+    border-radius: 5px;
+    margin: 0px 50px 0px 50px;
+    padding: 50px 50px 50px 50px;
+    align-content: center;
+}
+
+button.blue_button {
+    background-color: #00a1ff;
+    border-radius: 4px;
+    border: none;
+    padding: 7px;
+    color: white;
+    width: 100px;
+}
+
+button.half_screen {
+    margin: 0px 50px 0px 50px;
+}
+
+main hr {
+     margin: 40px 0px 40px 0px
+ }
+
+footer {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a.half_screen {
+    margin: 0px 50px 0px 50px;
+}
