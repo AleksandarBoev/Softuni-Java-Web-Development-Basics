@@ -81,7 +81,7 @@
                                    id="salary" placeholder="Salary..."/>
                 </div>
                 <div class="form-submit-holder d-flex justify-content-center w-25">
-                    <h:commandButton action="#{employee_register.register()}" value="Register"
+                    <h:commandButton action="#{employee_register.register}" value="Register"
                                      class="btn btn-success mt-4 mb-3 mx-auto w-100"/>
                 </div>
                 <div class="form-group w-25">
@@ -93,8 +93,8 @@
         </h:form>
         <hr style="height: 2px;" class="bg-dark"/>
         <div class="d-flex justify-content-between">
-            <h5 class="w-50">#{employee_statistics.totalMoneyNeeded}</h5> <!--TODO-->
-            <h5 class="w-50 text-right">Average Salary: $4225.00</h5>
+            <h5 class="w-50">Total money needed: $#{employee_statistics.totalMoneyNeeded}</h5>
+            <h5 class="w-50 text-right">Average Salary: $#{employee_statistics.averageMoneyNeeded}</h5>
         </div>
         <hr style="height: 2px;" class="bg-dark"/>
     </div>

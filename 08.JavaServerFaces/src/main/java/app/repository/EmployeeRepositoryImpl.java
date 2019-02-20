@@ -60,8 +60,28 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public BigDecimal getSalariesAvg() {
-        return this.entityManager
-                .createQuery("SELECT avg(e.salary) FROM Employee e", BigDecimal.class)
-                .getSingleResult();
+        List<Employee> employees = this.getAll();
+
+        if (employees.isEmpty())
+            return BigDecimal.ZERO;
+
+        BigDecimal result = BigDecimal.ZERO;
+
+        for (Employee employee : employees) {
+            result = result.add(employee.getSalary());
+        }
+
+        return result.divide(BigDecimal.valueOf(employees.size()), 2, BigDecimal.ROUND_HALF_UP);
+        /*
+       return this.entityManager
+            .createQuery("SELECT avg(e.salary) FROM Employee e", BigDecimal.class)
+            .getSingleResult();
+            //TODO for some reason this method is called many times and the generated HQL in the console is
+        Hibernate:
+    select
+        sum(employee0_.salary) as col_0_0_
+    from
+        employees employee0_
+         */
     }
 }

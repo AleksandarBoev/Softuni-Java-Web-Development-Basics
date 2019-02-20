@@ -4,6 +4,7 @@ import app.domain.entities.Employee;
 import app.domain.service_models.EmployeeServiceModel;
 import app.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
