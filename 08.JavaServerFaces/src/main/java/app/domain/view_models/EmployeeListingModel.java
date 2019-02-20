@@ -1,9 +1,10 @@
-package app.domain.service_models;
+package app.domain.view_models;
 
 import java.math.BigDecimal;
 
-public class EmployeeServiceModel {
+public class EmployeeListingModel {
     private String id;
+    private Integer number;
     private String firstName;
     private String lastName;
     private String position;
@@ -16,6 +17,14 @@ public class EmployeeServiceModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Integer getNumber() {
+        return this.number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public String getFirstName() {

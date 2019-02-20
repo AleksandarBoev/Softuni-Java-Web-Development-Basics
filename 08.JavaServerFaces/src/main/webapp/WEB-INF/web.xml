@@ -32,6 +32,5 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
-        <!--TODO maybe it has to be /faces/jsf/*-->
     </servlet-mapping>
 </web-app>

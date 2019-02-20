@@ -6,6 +6,7 @@ import app.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,5 +42,20 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeServiceModel findEmployeeById(String id) {
         return this.modelMapper.map(this.employeeRepository.findById(id), EmployeeServiceModel.class);
+    }
+
+    @Override
+    public boolean removeEmployee(String id) {
+        return this.employeeRepository.delete(id);
+    }
+
+    @Override
+    public BigDecimal getSalariesSum() {
+        return this.employeeRepository.getSalariesSum();
+    }
+
+    @Override
+    public BigDecimal getSalariesAvg() {
+        return this.employeeRepository.getSalariesAvg();
     }
 }

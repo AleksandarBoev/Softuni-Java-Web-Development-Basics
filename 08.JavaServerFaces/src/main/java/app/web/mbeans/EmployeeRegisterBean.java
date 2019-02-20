@@ -49,10 +49,11 @@ public class EmployeeRegisterBean {
         /*
         redirects to index.xhtml, because in the web.xml there is this line:
         <welcome-file>faces/jsf/index.xhtml</welcome-file> , meaning index.xhtml is the home page
-        if I want the redirect to be to another page, then I would type in the name of the page + extension.
-        this works if the page is on the same level as the current page, which is being processed.
+        If I want the redirect to be to another page, then I would type in the name of the page + extension.
+        This works if the page is on the same level as the current page, which is being processed.
         If the other page is one level above the current one, just add "../" to go up a level
         and enter the page name + extension.
+        Also if this redirect wasn't at the end of the method, then a "return;" after the redirect would be needed.
         */
     }
 }
