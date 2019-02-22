@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head>
+    <title>Some title</title>
+</h:head>
+<h:body>
+    <h1>This title is not visible, because the 'common.xhtml' has taken control!
+        <br/>Also the title of the page is not 'Some title', but is 'Common title' from 'common.xhtml'</h1>
+    <ui:composition template = "common.xhtml">
+        <ui:define name = "content">
+            <br/><br/>
+            <h:link value = "Page 1" outcome = "page1" />
+            <h:link value = "Page 2" outcome = "page2" />
+            <br/><br/>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
