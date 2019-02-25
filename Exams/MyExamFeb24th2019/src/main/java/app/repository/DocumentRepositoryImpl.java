@@ -58,4 +58,12 @@ public class DocumentRepositoryImpl implements DocumentRepository {
 
         return countOfDeletedEntities != 0;
     }
+
+    @Override
+    public Document findByTitle(String title) {
+        return this.entityManager
+                .createQuery("SELECT d FROM Document d WHERE d.title = :title", Document.class)
+                .setParameter("title", title)
+                .getSingleResult();
+    }
 }

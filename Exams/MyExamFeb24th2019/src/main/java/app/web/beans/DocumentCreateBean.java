@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @Named
 @RequestScoped
-public class ScheduleCreateBean {
+public class DocumentCreateBean {
     private static final String DOCUMENT_SAVE_EXCEPTION_MESSAGE = "Something went wrong with saving the document!";
 
     private DocumentCreateModel model;
@@ -23,12 +23,12 @@ public class ScheduleCreateBean {
     private DocumentService documentService;
     private ModelMapper modelMapper;
 
-    public ScheduleCreateBean() {
+    public DocumentCreateBean() {
         this.model = new DocumentCreateModel();
     }
 
     @Inject
-    public ScheduleCreateBean(DocumentService documentService, ModelMapper modelMapper) {
+    public DocumentCreateBean(DocumentService documentService, ModelMapper modelMapper) {
         this();
         this.documentService = documentService;
         this.modelMapper = modelMapper;
@@ -56,7 +56,8 @@ public class ScheduleCreateBean {
         session.setAttribute("document-title", this.model.getTitle());
         session.setAttribute("document-content", this.model.getContent());
         session.setAttribute("document-id", documentServiceModel.getId());
+        //TODO attach the service model via session
 
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/details");
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/details?title=" + this.model.getTitle());
     }
 }

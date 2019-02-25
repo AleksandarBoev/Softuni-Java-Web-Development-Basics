@@ -17,17 +17,17 @@
                     <div class="label-center d-flex justify-content-center">
                         <h:outputLabel for="title" class="text-exodia h3" value="Title"/>
                     </div>
-                    <h:inputText class="form-control" id="title" placeholder="Title..." value="#{scheduleCreateBean.model.title}"/>
+                    <h:inputText class="form-control" id="title" placeholder="Title..." value="#{documentCreateBean.model.title}"/>
                 </div>
                 <div class="form-group">
                     <div class="label-center d-flex justify-content-center">
                         <h:outputLabel for="content" class="text-exodia h3" value="Content"/>
                     </div>
-                    <h:inputTextarea class="form-control" id="content" row = "10" placeholder="Content..." value="#{scheduleCreateBean.model.content}"/>
+                    <h:inputTextarea class="form-control" id="content" row = "10" placeholder="Content..." value="#{documentCreateBean.model.content}"/>
                 </div>
                 <hr class="bg-exodia hr-2"/>
                 <div class="button-holder d-flex justify-content-center">
-                    <h:commandButton class="btn bg-exodia text-white" value="Schedule" action="#{scheduleCreateBean.create}"/>
+                    <h:commandButton class="btn bg-exodia text-white" value="Schedule" action="#{documentCreateBean.create}"/>
                 </div>
             </h:form>
             <hr class="bg-exodia hr-2 mt-5"/>

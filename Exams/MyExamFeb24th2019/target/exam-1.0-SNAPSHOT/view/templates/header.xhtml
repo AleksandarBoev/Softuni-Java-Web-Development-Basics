@@ -14,52 +14,42 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-exodia rounded">
             <h:link class="navbar-brand nav-link-white" outcome="index" value="EXODIA"/>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
-                <c:choose>
-                    <c:when test="#{session.getAttribute('username') == null}"> <!--when a user is logged in:-->
-                        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+                <ul class="navbar-nav"> <!--this is needed, otherwise the navbar will be on the left and not on the right-->
+                </ul>
+                <ul class="navbar-nav">
+                    <c:choose>
+                        <c:when test="#{session.getAttribute('username') == null}"> <!--when a user is logged out-->
+                            <li class="nav-item">
+                                <h:link class="nav-link nav-link-white active" outcome="index" value="Home"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link nav-link-white active" outcome="login" value="Login"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link nav-link-white active" outcome="register" value="Register"/>
+                            </li>
+                        </c:when>
 
-                            <ul class="navbar-nav">
-
-                                <li class="nav-item">
-                                    <h:link class="nav-link text-muted active h5" outcome="index" value="Home"/>
-                                </li>
-                                <li class="nav-item">
-                                    <h:link class="nav-link text-muted active h5" outcome="login" value="Login"/>
-                                </li>
-                                <li class="nav-item">
-                                    <h:link class="nav-link text-muted active h5" outcome="register" value="Register"/>
-                                </li>
-                            </ul>
-                        </div>
-                    </c:when>
-
-                    <c:otherwise> <!--when a user is logged out-->
-                        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
-
-                            <ul class="navbar-nav">
-
-                                <li class="nav-item">
-                                    <h:link class="nav-link text-muted active h5" outcome="home" value="Home"/>
-                                </li>
-                                <li class="nav-item">
-                                    <h:link class="nav-link text-muted active h5" outcome="schedule" value="Schedule"/>
-                                </li>
-                                <li class="nav-item">
-                                    <h:form>
-                                        <h:commandLink class="nav-link text-muted active h5" value="Logout"
-                                                       action="#{userLogoutBean.logout}"/>
-                                    </h:form>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </c:otherwise>
-                </c:choose>
+                        <c:otherwise> <!--when a user is logged in-->
+                            <li class="nav-item">
+                                <h:link class="nav-link nav-link-white active" outcome="home" value="Home"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:link class="nav-link nav-link-white active" outcome="schedule" value="Schedule"/>
+                            </li>
+                            <li class="nav-item">
+                                <h:form>
+                                    <h:commandLink class="nav-link nav-link-white active" value="Logout"
+                                                   action="#{userLogoutBean.logout}"/>
+                                </h:form>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                </ul>
             </div>
         </nav>
     </header>

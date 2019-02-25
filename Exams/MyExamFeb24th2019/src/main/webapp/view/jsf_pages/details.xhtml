@@ -12,13 +12,13 @@
             <hr class="bg-exodia hr-2"/>
             <div class="caption-holder d-flex justify-content-between pt-1">
                 <h5 class="text-left text-muted">Details</h5>
-                <h:outputText class="text-right text-muted" value="Document - #{session.getAttribute('document-id')}"/>
+                <h:outputText class="text-right text-muted" value="Document - #{documentDetailsBean.model.id}"/>
             </div>
             <hr class="bg-exodia hr-2"/>
             <h:form class="mx-auto w-75">
-                <h:outputText style="text-align: center"  class="text-center text-exodia" value="#{session.getAttribute('document-title')}"/>
+                <h:outputText style="text-align: center"  class="text-center text-exodia" value="#{documentDetailsBean.model.title}"/>
                 <hr class="bg-exodia hr-2"/>
-                <h:outputText class="text-justify" value="#{session.getAttribute('document-content')}"/>
+                <h:outputText class="text-justify" value="#{documentDetailsBean.model.content}"/>
             </h:form>
             <hr class="bg-exodia hr-2 mt-5"/>
         </main>

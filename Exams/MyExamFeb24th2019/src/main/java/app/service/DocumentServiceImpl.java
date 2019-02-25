@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class DocumentServiceImpl implements DocumentService {
+    private static final String DOCUMENT_NOT_FOUND_BY_TITLE_MESSAGE = "No document found with this title!";
+
     private DocumentRepository documentRepository;
     private ModelMapper modelMapper;
 
@@ -48,5 +50,16 @@ public class DocumentServiceImpl implements DocumentService {
     @Override
     public boolean removeDocument(String id) {
         return this.documentRepository.removeDocument(id);
+    }
+
+    @Override
+    public DocumentServiceModel findByTitle(String title) {
+        Document document = this.documentRepository.findByTitle(title);
+
+        if (document == null) {
+            throw new IllegalArgumentException(DOCUMENT_NOT_FOUND_BY_TITLE_MESSAGE);
+        }
+
+        return this.modelMapper.map(document, DocumentServiceModel.class);
     }
 }

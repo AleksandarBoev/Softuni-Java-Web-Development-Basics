@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /*
-If a logged in user tries to access the pages below, redirect him/her/apache-helicopter
+If a logged in user tries to access the pages below, redirectToDetails him/her/apache-helicopter
 to the "/home" page
  */
 @WebFilter({

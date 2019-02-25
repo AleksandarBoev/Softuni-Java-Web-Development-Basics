@@ -11,14 +11,40 @@
         <main class="mt-3">
             <hr class="bg-exodia hr-2"/>
             <div class="print-container container-fluid">
-                <c:forEach items="#{documentsHomeBean.allDocumentViewModelList}" var="model">
-                    <div class="print-scheduled col-md-2 bg-exodia rounded">
-                        <h:outputText class="text-center text-white font-weight-bold py-3 mt-3" value="#{model.trimmedTitle}"/>
-                        <hr class="bg-white"/>
-                        <div class="buttons-holder w-75 mx-auto d-flex justify-content-between">
-                            <button class="btn bg-exodia text-white font-weight-bold mb-3">Print</button>
-                            <button class="btn bg-exodia text-white font-weight-bold mb-3">Details</button>
-                        </div>
+
+                <c:forEach items="#{documentHomeBean.allDocumentViewModels}" var="five_models">
+
+                    <div class="row mb-4 d-flex justify-content-between">
+
+                        <c:forEach items="#{five_models}" var="model">
+                            <c:choose>
+                                <c:when test="#{model == null}">
+                                    <div class="col-md-2"></div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="print-scheduled col-md-2 bg-exodia rounded">
+
+                                        <h:outputText class="text-center text-white font-weight-bold py-3 mt-3"
+                                                      style="display: block" value="#{model.trimmedTitle}"/>
+                                        <hr class="bg-white"/>
+                                        <div class="buttons-holder w-75 mx-auto d-flex justify-content-between">
+                                            <h:form>
+                                                <h:commandButton
+                                                        action="#{documentHomeBean.redirectToDetails(model.title)}"
+                                                        value="Details"
+                                                        class="btn bg-exodia text-white font-weight-bold mb-3"/>
+                                                <h:commandButton
+                                                        action="#{documentHomeBean.redirectToPrint(model.title)}"
+                                                        value="Print"
+                                                        class="btn bg-exodia text-white font-weight-bold mb-3"/>
+                                            </h:form>
+
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:forEach>
+
                     </div>
                 </c:forEach>
             </div>

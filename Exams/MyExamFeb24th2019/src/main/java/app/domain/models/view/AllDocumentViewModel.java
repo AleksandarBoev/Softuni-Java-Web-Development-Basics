@@ -13,7 +13,6 @@ public class AllDocumentViewModel {
     }
 
     public String getTrimmedTitle() {
-        //TODO trim the title
         return this.trimmedTitle;
     }
 
