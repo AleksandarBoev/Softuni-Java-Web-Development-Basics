@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /*
 If a guest (not logged in) user tries to access the pages below,
-redirectToDetails him/her/apache-helicopter to the "/index" page
+redirect him/her/apache-helicopter to the "/index" page
  */
 @WebFilter({
         "/home", "/profile", "/friends", "/profile/*"

@@ -11,10 +11,13 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 @Named
 @RequestScoped
@@ -22,8 +25,8 @@ public class DocumentHomeBean {
     private static final int TITLE_TRIM_LENGTH = 12;
     private static final int DOCUMENTS_PER_ROW = 5;
 
-    private List<AllDocumentViewModel> allDocumentViewModelList; //TODO tactic with the list of lists?
     private List<AllDocumentViewModel[]> allDocumentViewModels;
+    private Map<String, DocumentServiceModel> documentTitleValue;
 
     public DocumentHomeBean() {
     }
@@ -31,31 +34,41 @@ public class DocumentHomeBean {
     @Inject
     public DocumentHomeBean(DocumentService documentService, ModelMapper modelMapper) {
         this();
+
+        List<DocumentServiceModel> documents = documentService.getAll();
+
+        this.documentTitleValue = new HashMap<>(documents.size());
+
+        List<AllDocumentViewModel> allDocumentViewModelList = new ArrayList<>(documents.size());
         TypeMap<DocumentServiceModel, AllDocumentViewModel> mapper =
                 this.createTypeMap(modelMapper, TITLE_TRIM_LENGTH);
 
-        this.allDocumentViewModelList = documentService.getAll()
-                .stream()
-                .map(d -> mapper.map(d))
-                .collect(Collectors.toList());
+        for (DocumentServiceModel document : documents) {
+            allDocumentViewModelList.add(mapper.map(document));
+            this.documentTitleValue.put(document.getTitle(), document);
+        }
 
-        this.allDocumentViewModels = this.reformat(this.allDocumentViewModelList, DOCUMENTS_PER_ROW);
-    }
-
-    public List<AllDocumentViewModel> getAllDocumentViewModelList() {
-        return this.allDocumentViewModelList;
-    }
-
-    public void setAllDocumentViewModelList(List<AllDocumentViewModel> allDocumentViewModelList) {
-        this.allDocumentViewModelList = allDocumentViewModelList;
+        this.allDocumentViewModels = this.reformat(allDocumentViewModelList, DOCUMENTS_PER_ROW);
     }
 
     public void redirectToDetails(String title) throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/details?title=" + title);
+        HttpServletRequest request =
+                (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
+        DocumentServiceModel documentServiceModel = this.documentTitleValue.get(title);
+
+        session.setAttribute("document-service-model", documentServiceModel);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/details");
     }
 
     public void redirectToPrint(String title) throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/print?title=" + title);
+        HttpServletRequest request =
+                (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
+        DocumentServiceModel documentServiceModel = this.documentTitleValue.get(title);
+
+        session.setAttribute("document-service-model", documentServiceModel);
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/print");
     }
 
     public List<AllDocumentViewModel[]> getAllDocumentViewModels() {
@@ -92,12 +105,12 @@ public class DocumentHomeBean {
 
         int counter = 0;
         for (AllDocumentViewModel document : documents) {
-            if (counter % 5 == 0) {
+            if (counter % docsPerRow == 0) {
                 AllDocumentViewModel[] newRow = new AllDocumentViewModel[docsPerRow];
                 result.add(newRow);
             }
 
-            result.get(counter / 5)[counter % 5] = document;
+            result.get(counter / docsPerRow)[counter % docsPerRow] = document;
             counter++;
         }
 

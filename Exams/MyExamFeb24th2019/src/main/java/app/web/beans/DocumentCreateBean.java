@@ -53,11 +53,8 @@ public class DocumentCreateBean {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         HttpSession session = request.getSession();
 
-        session.setAttribute("document-title", this.model.getTitle());
-        session.setAttribute("document-content", this.model.getContent());
-        session.setAttribute("document-id", documentServiceModel.getId());
-        //TODO attach the service model via session
+        session.setAttribute("document-service-model", documentServiceModel);
 
-        FacesContext.getCurrentInstance().getExternalContext().redirect("/details?title=" + this.model.getTitle());
+        FacesContext.getCurrentInstance().getExternalContext().redirect("/details");
     }
 }

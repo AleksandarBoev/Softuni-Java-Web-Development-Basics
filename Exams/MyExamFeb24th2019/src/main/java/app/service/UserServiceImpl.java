@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean save(UserServiceModel serviceModel) {
         User user = this.modelMapper.map(serviceModel, User.class);
-        //TODO when a user is trying to log in, the password needs to be hached before comparison
         user.setPassword(DigestUtils.sha256Hex(serviceModel.getPassword()));
         user = this.userRepository.save(user); //not needed, but just in case
 

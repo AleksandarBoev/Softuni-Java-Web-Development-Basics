@@ -40,11 +40,14 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public boolean save(DocumentServiceModel serviceModel) {
-        Document document = this.modelMapper.map(serviceModel, Document.class);
-        document = this.documentRepository.save(document);
-        serviceModel.setId(document.getId());
-
-        return document != null;
+        try { //if the service model is null, the the model mapper will break
+            Document document = this.modelMapper.map(serviceModel, Document.class);
+            document = this.documentRepository.save(document);
+            serviceModel.setId(document.getId());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

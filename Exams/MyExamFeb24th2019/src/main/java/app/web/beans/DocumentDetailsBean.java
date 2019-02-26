@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 @Named
@@ -24,11 +25,12 @@ public class DocumentDetailsBean {
     @Inject
     public DocumentDetailsBean(DocumentService documentService, ModelMapper modelMapper) {
         this();
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        Map<String, String[]> queryParams = request.getParameterMap();
-        String documentTitle = queryParams.get("title")[0];
-        //TODO get the service model via Session
-        DocumentServiceModel serviceModel = documentService.findByTitle(documentTitle);
+
+        HttpServletRequest request =
+                (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        HttpSession session = request.getSession();
+        DocumentServiceModel serviceModel =
+                (DocumentServiceModel)session.getAttribute("document-service-model");
         this.model = modelMapper.map(serviceModel, DocumentDetailsModel.class);
     }
 
